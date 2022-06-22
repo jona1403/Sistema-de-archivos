@@ -1,0 +1,64 @@
+<div *ngIf="mostrarMensaje" class="row justify-content-around">
+    <div class="col-md-5">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Bienvenido a la pagina!!
+            <button type="button" (click)="desactivarMensaje()" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+</div>
+<div *ngIf="mostrarMensajeError" class="row justify-content-around">
+    <div class="col-md-5">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Error al ingresar, intente de nuevo.
+            <button type="button" (click)="desactivarMensaje()" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="rounded card shadow-lg o-hidden border-0 my-5">
+        <div class="card-body p-0">
+            <div class="row" style="margin: 100px;">
+                <div class="col-lg-5 d-none d-lg-flex">
+                    <img src="../../../assets/usuario.png" style="padding-left: 100px;">
+                </div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h4 class="text-dark mb-4">LOGIN</h4>
+                        </div>
+                        <form class="user">
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <h2>Usuario</h2>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input [formControl]="usuario" class="form-control form-control-user" type="text" id="inputCui"
+                                        placeholder="USUARIO" name="inputCui">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <h2>Contraseña</h2>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input [formControl]="contrasenia" class="form-control form-control-user" type="text" id="inputCui"
+                                        placeholder="CONTRASEÑA" name="inputCui">
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <div class="col-sm-6">
+                                    <button (click)="crearEstudiante()" class="btn btn-primary btn-block text-white btn-user" type="submit">Ingresar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
