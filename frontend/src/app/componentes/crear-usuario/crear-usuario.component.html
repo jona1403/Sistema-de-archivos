@@ -1,1 +1,93 @@
-<p>crear-usuario works!</p>
+<div *ngIf="mostrarMensaje" class="row justify-content-around">
+    <div class="col-md-5">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Bienvenido a la pagina!!
+            <button type="button" (click)="desactivarMensaje()" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+</div>
+<div *ngIf="mostrarMensajeError" class="row justify-content-around">
+    <div class="col-md-5">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Error al ingresar datos, intente de nuevo.
+            <button type="button" (click)="desactivarMensaje()" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="rounded card shadow-lg o-hidden border-0 my-5" style="background-color: #191919;">
+        <div class="card-body p-0">
+            <div class="row" style="margin: 30px;">
+                <div class="col-lg-12">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <img src="../../../assets/nuevo.png">
+                            <h1 style="color: aliceblue; padding: 1cm;">Crear Usuario</h1>
+                        </div>
+                        <form class="user">
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <input [formControl]="Nombre" class="form-control form-control-user" type="text" id="inputNombre"
+                                        placeholder="Nombre" name="inputNombre" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input [formControl]="Apellido" class="form-control form-control-user" type="text" id="inputApellido"
+                                        placeholder="Apellido" name="inputApellido" required>
+                                </div>
+                            </div> <br>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <input [formControl]="Usuario" class="form-control form-control-user" type="text" id="inputUsuario"
+                                        placeholder="Usuario" name="inputUsuario" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input [formControl]="Correo" class="form-control form-control-user" type="email" id="inputCorreo"
+                                        placeholder="Correo" name="inputCorreo" required>
+                                </div>
+                            </div> <br>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <input [formControl]="Telefono" class="form-control form-control-user" type="number" id="inputTelefono"
+                                        placeholder="Telefono" name="inputTelefono" required>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h4 style="color: aliceblue;">Fecha de Nacimiento</h4>
+                                </div>
+                                <div class="col-sm-3">
+                                    
+                                    <input [formControl]="FechaNac" class="form-control form-control-user" type="date" id="inputNac"
+                                        placeholder="Fecha Nacimiento" name="inputNac" required>
+                                </div>
+                            </div> <br>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <input [formControl]="contrasenia" class="form-control form-control-user" type="password" id="inputCont"
+                                        placeholder="Contraseña" name="inputCont" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input [formControl]="confirmContrasenia" class="form-control form-control-user" type="password" id="inputConf"
+                                        placeholder="Confirmar Contraseña" name="inputConf" required>
+                                </div>
+                            </div><br>
+
+                            <div class="row justify-content-center">
+                                <div class="col-sm-1">
+                                    <button (click)="crearUsuario()" class="btn btn-outline-primary" type="submit">Registrarse</button>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <a href="/" style="color: aliceblue;">¿Ya tienes una cuenta?</a><br>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

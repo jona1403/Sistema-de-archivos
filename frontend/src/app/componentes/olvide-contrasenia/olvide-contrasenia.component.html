@@ -1,7 +1,7 @@
 <div *ngIf="mostrarMensaje" class="row justify-content-around">
     <div class="col-md-5">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Bienvenido a la pagina!!
+            Se le ha enviado un correo electronico, por favor revise su bandeja de entrada.
             <button type="button" (click)="desactivarMensaje()" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -11,7 +11,7 @@
 <div *ngIf="mostrarMensajeError" class="row justify-content-around">
     <div class="col-md-5">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Error al ingresar, intente de nuevo.
+            Error al ingresar datos, intente de nuevo.
             <button type="button" (click)="desactivarMensaje()" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -23,15 +23,15 @@
         <div class="card-body p-0">
             <div class="row" style="margin: 30px;">
                 <div class="col-lg-5 d-none d-lg-flex">
-                    <div class="col-sm-6" style="padding-top: 70px; padding-left: 100px;">
-                        <img src="../../../assets/perfil-del-usuario.png" >
+                    <div class="col-sm-6" style="padding-top: 130px; padding-left: 160px;">
+                        <img src="../../../assets/reset-password.png" >
                     </div>
                     
                 </div>
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 style="color: aliceblue; padding: 1cm;">LOGIN</h1>
+                            <h1 style="color: aliceblue; padding: 1cm;">Recuperación de Contraseña</h1>
                         </div>
                         <form class="user">
                             <div class="form-group row">
@@ -45,22 +45,22 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6">
-                                    <h2 style="color: aliceblue;">Contraseña</h2>
+                                    <h2 style="color: aliceblue;">Correo</h2>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input [formControl]="contrasenia" class="form-control form-control-user" type="text" id="inputContr"
-                                        placeholder="CONTRASEÑA" name="inputContr" required>
+                                    <input [formControl]="correo" class="form-control form-control-user" type="email" id="inputCorreo"
+                                        placeholder="CORREO" name="inputCorreo" required>
                                 </div>
-                            </div><br>
+                            </div>
 
                             <div class="row justify-content-center">
-                                <div class="col-sm-2">
-                                    <button (click)="login()" class="btn btn-outline-primary" type="submit">Ingresar</button>
+                                <div class="col-sm-6">
+                                    <button (click)="verificar()" class="btn btn-outline-success" type="submit">Recuperar</button>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6">
-                                    <a href="/OlvideMiContrasenia" style="color: aliceblue;">Olvide mi Contraseña</a><br>
+                                    <a href="/" style="color: aliceblue;">Volver al login</a><br>
                                     <a href="/CrearUsuario" style="color: aliceblue;">Crear cuenta</a>
                                 </div>
                             </div>

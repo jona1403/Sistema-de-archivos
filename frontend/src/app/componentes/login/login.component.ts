@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-
+import { Usuariolog } from 'src/app/models/usuariolog';
+import { UsuarioService } from '../../services/usuario.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,33 +13,23 @@ export class LoginComponent implements OnInit {
   contrasenia = new FormControl('');
   mostrarMensaje= false;
   mostrarMensajeError = false;  
-  constructor() { }
+  constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
   }
 
-  crearEstudiante(){
-    /*const estudiante: Estudiante={
-      carnet:Number(this.carnet.value),
-      nombres:this.nombres.value,
-      apellidos:this.apellidos.value,
-      cui:String(this.cui.value),
-      correo:this.correo.value,
-      listaCursos:[]
+  login(){
+    const user: Usuariolog={
+      usr: this.usuario.value,
+      cntr: this.contrasenia.value
     }
-    console.log(this.cui.value)
-    this.estudianteService.postEstudiante(estudiante).subscribe((res:any)=>{
-      this.mostrarMensaje=true
-      this.carnet.setValue("")
-      this.nombres.setValue("")
-      this.apellidos.setValue("")
-      this.cui.setValue("")
-      this.correo.setValue("")
-      console.log("Estudiante Creado")
-    },(err)=>{
-      this.mostrarMensajeError=true
-    })*/
 
+    this.usuarioService.postLogin(user).subscribe((res:any)=>{
+      this.usuario.setValue("");
+      this.contrasenia.setValue("");
+    },(err)=>{
+      this.mostrarMensajeError = true;
+    })
   }
 
   desactivarMensaje(){
