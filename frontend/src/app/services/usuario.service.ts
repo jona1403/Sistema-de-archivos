@@ -42,4 +42,13 @@ export class UsuarioService {
     };
     return this.http.post<any>(baseURL+'RecuperarContrasenia', usuario, httpOptions)
   }
+
+  postDarAlta(usuario: string){
+    const httpOptions = {
+      headers : new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+    return this.http.post<any>(baseURL+'RecuperarContrasenia', usuario, httpOptions)
+  }
 }

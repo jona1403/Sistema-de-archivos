@@ -16,7 +16,6 @@ export class CrearUsuarioComponent implements OnInit {
   Correo = new FormControl('');
   Telefono = new FormControl('');
   FechaNac = new FormControl('');
-  FechaCre = new FormControl('');
   contrasenia = new FormControl('');
   confirmContrasenia = new FormControl('');
   mostrarMensaje = false;
@@ -27,28 +26,35 @@ export class CrearUsuarioComponent implements OnInit {
   ngOnInit(): void {
   }
   validacionCont(): boolean {
-    const regex = new RegExp('.+\\*.+');
+    const regex = new RegExp('(?=.*[A-Z])(?=.*[0-9])(?=.*[!"#$%&/()])([A-Za-z0-9!"#$%&/()]){8,20}');
     if (this.contrasenia.value == this.confirmContrasenia.value) {
-      return true;
-
+      if (regex.test(this.contrasenia.value as string)) {
+        return true;
+      }
     }
     return false;
   }
   crearUsuario() {
+
+    const tiempoTranscurrido = Date.now();
+    const hoy = new Date(tiempoTranscurrido);
+
     const user: Usuario = {
-      nombre: this.Nombre.value,
-      apellido: this.Apellido.value,
-      usuario: this.Usuario.value,
-      correo: this.Correo.value,
+      nombre: this.Nombre.value as string,
+      apellido: this.Apellido.value as string,
+      usuario: this.Usuario.value as string,
+      correo: this.Correo.value as string,
       numero: Number(this.Telefono.value),
-      contrasenia: this.contrasenia.value,
-      fechaNac: this.FechaNac.value,
-      fechaReg: this.FechaCre.value,
+      contrasenia: this.contrasenia.value as string,
+      fechaNac: this.FechaNac.value as string,
+      fechaReg: hoy.toUTCString(),
       able: false,
+      alta: false,
       type: 0
     }
-
-    if(!this.validacionCont()){
+    //Se valida la contrasenia
+    if (!this.validacionCont()) {
+      this.mostrarMensajeError = true;
       return;
     }
     this.usuarioService.postCreateCliente(user).subscribe((res: any) => {
@@ -58,7 +64,6 @@ export class CrearUsuarioComponent implements OnInit {
       this.Usuario.setValue("")
       this.Correo.setValue("")
       this.Telefono.setValue("")
-      this.FechaCre.setValue("")
       this.FechaNac.setValue("")
       this.contrasenia.setValue("")
       this.confirmContrasenia.setValue("")

@@ -1,6 +1,6 @@
 export class Rec {
-    usr: string | null
-    correo: string | null
+    usr: string
+    correo: string
 
     constructor(_usuario: string, _correo: string) {
 

@@ -22,8 +22,8 @@ export class OlvideContraseniaComponent implements OnInit {
 
   verificar(){
     const user: Rec={
-      usr: this.usuario.value,
-      correo: this.correo.value
+      usr: this.usuario.value as string,
+      correo: this.correo.value as string
     }
 
     this.usuarioService.postRecuperar(user).subscribe((res:any)=>{

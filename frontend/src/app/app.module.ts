@@ -9,6 +9,7 @@ import { LoginComponent } from './componentes/login/login.component';
 import { CrearUsuarioComponent } from './componentes/crear-usuario/crear-usuario.component';
 import { OlvideContraseniaComponent } from './componentes/olvide-contrasenia/olvide-contrasenia.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
+import { InicioAdminComponent } from './componentes/inicio-admin/inicio-admin.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { InicioComponent } from './componentes/inicio/inicio.component';
     LoginComponent,
     CrearUsuarioComponent,
     OlvideContraseniaComponent,
-    InicioComponent
+    InicioComponent,
+    InicioAdminComponent
   ],
   imports: [
     BrowserModule,

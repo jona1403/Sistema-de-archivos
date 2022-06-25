@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from './componentes/login/login.component';
 import {CrearUsuarioComponent} from './componentes/crear-usuario/crear-usuario.component';
 import { OlvideContraseniaComponent } from './componentes/olvide-contrasenia/olvide-contrasenia.component';
+import { InicioComponent } from './componentes/inicio/inicio.component';
+import { InicioAdminComponent } from './componentes/inicio-admin/inicio-admin.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,14 @@ const routes: Routes = [
   {
     path: 'OlvideMiContrasenia',
     component: OlvideContraseniaComponent,
+  },
+  {
+    path: 'inicio',
+    component: InicioComponent,
+  },
+  {
+    path: 'inicioAdmin',
+    component: InicioAdminComponent,
   },
 ];
 

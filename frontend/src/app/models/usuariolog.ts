@@ -1,7 +1,7 @@
 export class Usuariolog {
 
-    usr: string | null
-    cntr: string | null
+    usr: string
+    cntr: string
 
     constructor(_usuario: string, _contrasenia: string) {
 
