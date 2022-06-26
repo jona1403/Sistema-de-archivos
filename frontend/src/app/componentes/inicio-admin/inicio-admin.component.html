@@ -1,30 +1,23 @@
-<div class="row">
-    <div class="column">
-      <div class="card" style="align-items: center; background-color: #1f104f;">
-        <img src="../../../assets/carpeta.png" alt="Jane" style="padding: 15px;">
-        <div class="container">
-          <h2 style="color: aliceblue; text-align: center;">Administrar Carpetas y Archivos.</h2>
-          <div style="align-items: center; padding-left: 250px; padding-bottom: 20px;"><button class="btn btn-success">Ingresar</button></div>   
-        </div>
-      </div>
-    </div>
-  
-    <div class="column">
-        <div class="card" style="align-items: center; background-color: #1f104f;">
-          <img src="../../../assets/si.png" alt="Jane" style="padding: 15px;">
-          <div class="container">
-            <h2 style="color: aliceblue; text-align: center;">Cuentas por habilitar.</h2>
-            <div style="align-items: center; padding-left: 250px; padding-bottom: 20px;"><button class="btn btn-success">Ingresar</button></div>   
-          </div>
-        </div>
-      </div>
-      <div class="column">
-        <div class="card" style="align-items: center; background-color: #1f104f;">
-          <img src="../../../assets/kyc.png" alt="Jane" style="padding: 15px;">
-          <div class="container">
-            <h2 style="color: aliceblue; text-align: center;">Dar de alta.</h2>
-            <div style="align-items: center; padding-left: 250px; padding-bottom: 20px;"><button class="btn btn-success">Ingresar</button></div>   
-          </div>
-        </div>
-      </div>
-  </div>
+<mat-toolbar>
+  <mat-toolbar color="secondary" style="border-radius: 15px;">
+    <mat-toolbar-row>
+        <mat-icon style="margin-right: 10px;">home</mat-icon>
+        <h1>Manejo e Implementación de Archivos</h1>
+        <span class="example-spacer"></span>
+        <mat-icon style="color: red;" (click)="Logout()">logout</mat-icon>
+    </mat-toolbar-row>
+
+</mat-toolbar>
+
+</mat-toolbar>
+<mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Administración de Carpetas y Archivos">
+        <app-admin-carpetas-archivos></app-admin-carpetas-archivos>
+    </mat-tab>
+    <mat-tab label="Dar de alta">
+        <app-darde-alta></app-darde-alta>
+    </mat-tab>
+    <mat-tab label="Habilitar">
+        <app-habilitar></app-habilitar>
+    </mat-tab>
+</mat-tab-group>

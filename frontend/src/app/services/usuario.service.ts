@@ -49,6 +49,16 @@ export class UsuarioService {
         'Content-Type': 'application/json'
       }),
     };
-    return this.http.post<any>(baseURL+'RecuperarContrasenia', usuario, httpOptions)
+    return this.http.post<any>(baseURL+'DarAlta', usuario, httpOptions)
   }
+
+  postHabilitar(usuario: string){
+    const httpOptions = {
+      headers : new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+    return this.http.post<any>(baseURL+'Habilitar', usuario, httpOptions)
+  }
+  
 }

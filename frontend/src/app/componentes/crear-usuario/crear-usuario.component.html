@@ -19,69 +19,78 @@
     </div>
 </div>
 <div class="container">
-    <div class="rounded card shadow-lg o-hidden border-0 my-5" style="background-color: #191919;">
+    <div class="rounded card shadow-lg o-hidden border-0 my-5">
         <div class="card-body p-0">
             <div class="row" style="margin: 30px;">
                 <div class="col-lg-12">
                     <div class="p-5">
                         <div class="text-center">
                             <img src="../../../assets/nuevo.png">
-                            <h1 style="color: aliceblue; padding: 1cm;">Crear Usuario</h1>
+                            <h1 style="padding: 1cm;"><b>Crear Usuario</b></h1>
                         </div>
                         <form class="user">
                             <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <input [formControl]="Nombre" class="form-control form-control-user" type="text" id="inputNombre"
-                                        placeholder="Nombre" name="inputNombre" required>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input [formControl]="Apellido" class="form-control form-control-user" type="text" id="inputApellido"
-                                        placeholder="Apellido" name="inputApellido" required>
-                                </div>
+                                <mat-form-field appearance="fill" class="col-sm-6">
+                                    <mat-label>Ingrese su nombre</mat-label>
+                                    <input matInput [formControl]="Nombre" required>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill" class="col-sm-6">
+                                    <mat-label>Ingrese su Apellido</mat-label>
+                                    <input matInput [formControl]="Apellido" required>
+                                </mat-form-field>
                             </div> <br>
                             <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <input [formControl]="Usuario" class="form-control form-control-user" type="text" id="inputUsuario"
-                                        placeholder="Usuario" name="inputUsuario" required>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input [formControl]="Correo" class="form-control form-control-user" type="email" id="inputCorreo"
-                                        placeholder="Correo" name="inputCorreo" required>
-                                </div>
+                                <mat-form-field appearance="fill" class="col-sm-6">
+                                    <mat-label>Ingrese su usuario</mat-label>
+                                    <input matInput [formControl]="Usuario" required>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill" class="col-sm-6">
+                                    <mat-label>Ingrese su correo</mat-label>
+                                    <input matInput placeholder="pat@example.com" [formControl]="Correo" required>
+                                    <mat-error *ngIf="Correo.invalid">{{getErrorMessage()}}</mat-error>
+                                </mat-form-field>
                             </div> <br>
                             <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <input [formControl]="Telefono" class="form-control form-control-user" type="number" id="inputTelefono"
-                                        placeholder="Telefono" name="inputTelefono" required>
-                                </div>
-                                <div class="col-sm-3">
-                                    <h4 style="color: aliceblue;">Fecha de Nacimiento</h4>
-                                </div>
-                                <div class="col-sm-3">
-                                    
-                                    <input [formControl]="FechaNac" class="form-control form-control-user" type="date" id="inputNac"
-                                        placeholder="Fecha Nacimiento" name="inputNac" required>
-                                </div>
+                                <mat-form-field appearance="fill" class="col-sm-6">
+                                    <mat-label>Ingrese su numero</mat-label>
+                                    <input matInput [formControl]="Telefono" type="number" required>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="fill" class="col-sm-6">
+                                    <mat-label>Ingrese su fecha de nacimineto</mat-label>
+                                    <input matInput [formControl]="FechaNac" type="date" required>
+                                </mat-form-field>
                             </div> <br>
                             <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <input [formControl]="contrasenia" class="form-control form-control-user" type="password" id="inputCont"
-                                        placeholder="Contraseña" name="inputCont" required>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input [formControl]="confirmContrasenia" class="form-control form-control-user" type="password" id="inputConf"
-                                        placeholder="Confirmar Contraseña" name="inputConf" required>
-                                </div>
+                                <mat-form-field appearance="fill" class="col-sm-6">
+                                    <mat-label>Ingrese su contraseña</mat-label>
+                                    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="contrasenia"
+                                        required>
+                                    <button mat-icon-button matSuffix (click)="hide = !hide"
+                                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill" class="col-sm-6">
+                                    <mat-label>Confirmación de constraseña</mat-label>
+                                    <input matInput [type]="hide2 ? 'password' : 'text'"
+                                        [formControl]="confirmContrasenia" required>
+                                    <button mat-icon-button matSuffix (click)="hide2 = !hide2"
+                                        [attr.aria-label]="'Hide2 password'" [attr.aria-pressed]="hide2">
+                                        <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button>
+                                </mat-form-field>
                             </div><br>
 
                             <div class="row justify-content-center">
                                 <div class="col-sm-1">
-                                    <button (click)="crearUsuario()" class="btn btn-outline-primary" type="submit">Registrarse</button>
+                                    <button (click)="crearUsuario()" class="btn btn-outline-dark"
+                                        type="submit">Registrarse</button>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6">
-                                    <a href="/" style="color: aliceblue;">¿Ya tienes una cuenta?</a><br>
+                                    <a href="/" style="color: black;">¿Ya tienes una cuenta?</a><br>
                                 </div>
                             </div>
                         </form>

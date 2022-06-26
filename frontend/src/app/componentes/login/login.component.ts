@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Usuariolog } from 'src/app/models/usuariolog';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router, UrlSegment } from '@angular/router';
@@ -10,8 +10,8 @@ import { usuarioAdmin } from 'src/app/apiURL/baseURL';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  correo = new FormControl('');
+  hide = true;
+  correo = new FormControl('', [Validators.required, Validators.email]);
   contrasenia = new FormControl('');
   mostrarMensaje= false;
   mostrarMensajeError = false;  
@@ -65,5 +65,12 @@ export class LoginComponent implements OnInit {
     this.mostrarMensajeError=false
   }
 
+  getErrorMessage() {
+    if (this.correo.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.correo.hasError('email') ? 'Not a valid email' : '';
+  }
 
 }

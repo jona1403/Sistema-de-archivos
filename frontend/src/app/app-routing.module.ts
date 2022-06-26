@@ -5,6 +5,9 @@ import {CrearUsuarioComponent} from './componentes/crear-usuario/crear-usuario.c
 import { OlvideContraseniaComponent } from './componentes/olvide-contrasenia/olvide-contrasenia.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { InicioAdminComponent } from './componentes/inicio-admin/inicio-admin.component';
+import { DardeAltaComponent } from './componentes/darde-alta/darde-alta.component';
+import { HabilitarComponent } from './componentes/habilitar/habilitar.component';
+import { AdminCarpetasArchivosComponent } from './componentes/admin-carpetas-archivos/admin-carpetas-archivos.component';
 
 const routes: Routes = [
   {
@@ -26,6 +29,18 @@ const routes: Routes = [
   {
     path: 'inicioAdmin',
     component: InicioAdminComponent,
+  },
+  {
+    path: 'DarDeAlta',
+    component: DardeAltaComponent,
+  },
+  {
+    path: 'Habilitar',
+    component: HabilitarComponent,
+  },
+  {
+    path: 'AdministrarCarpetasArchivos',
+    component: AdminCarpetasArchivosComponent,
   },
 ];
 

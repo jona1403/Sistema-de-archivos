@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Rec } from 'src/app/models/rec';
 import { UsuarioService } from '../../services/usuario.service';
 
@@ -39,5 +39,14 @@ export class OlvideContraseniaComponent implements OnInit {
     this.mostrarMensaje = false
     this.mostrarMensajeError = false
   }
+
+  getErrorMessage() {
+    if (this.correo.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.correo.hasError('email') ? 'Not a valid email' : '';
+  }
+
 
 }

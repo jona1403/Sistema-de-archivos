@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators} from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from '../../services/usuario.service';
 
@@ -9,11 +9,12 @@ import { UsuarioService } from '../../services/usuario.service';
   styleUrls: ['./crear-usuario.component.css']
 })
 export class CrearUsuarioComponent implements OnInit {
-
+  hide = true;
+  hide2 = true;
   Nombre = new FormControl('');
   Apellido = new FormControl('');
   Usuario = new FormControl('');
-  Correo = new FormControl('');
+  Correo = new FormControl('', [Validators.required, Validators.email]);
   Telefono = new FormControl('');
   FechaNac = new FormControl('');
   contrasenia = new FormControl('');
@@ -48,7 +49,7 @@ export class CrearUsuarioComponent implements OnInit {
       contrasenia: this.contrasenia.value as string,
       fechaNac: this.FechaNac.value as string,
       fechaReg: hoy.toUTCString(),
-      able: false,
+      able: true,
       alta: false,
       type: 0
     }
@@ -78,5 +79,14 @@ export class CrearUsuarioComponent implements OnInit {
     this.mostrarMensaje = false
     this.mostrarMensajeError = false
   }
+
+  getErrorMessage() {
+    if (this.Correo.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.Correo.hasError('email') ? 'Not a valid email' : '';
+  }
+
 
 }

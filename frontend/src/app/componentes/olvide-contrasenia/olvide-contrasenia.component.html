@@ -1,7 +1,7 @@
 <div *ngIf="mostrarMensaje" class="row justify-content-around">
     <div class="col-md-5">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Se le ha enviado un correo electronico, por favor revise su bandeja de entrada.
+            Bienvenido a la pagina!!
             <button type="button" (click)="desactivarMensaje()" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -11,7 +11,7 @@
 <div *ngIf="mostrarMensajeError" class="row justify-content-around">
     <div class="col-md-5">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Error al ingresar datos, intente de nuevo.
+            Error al ingresar, intente de nuevo.
             <button type="button" (click)="desactivarMensaje()" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -19,49 +19,46 @@
     </div>
 </div>
 <div class="container">
-    <div class="rounded card shadow-lg o-hidden border-0 my-5" style="background-color: #191919;">
+    <div class="rounded card shadow-lg o-hidden border-0 my-5">
         <div class="card-body p-0">
             <div class="row" style="margin: 30px;">
                 <div class="col-lg-5 d-none d-lg-flex">
-                    <div class="col-sm-6" style="padding-top: 130px; padding-left: 160px;">
-                        <img src="../../../assets/reset-password.png" >
+                    <div class="col-sm-6" style="padding-top: 110px; padding-left: 165px;">
+                        <img src="../../../assets/reset-password.png">
                     </div>
-                    
+
                 </div>
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 style="color: aliceblue; padding: 1cm;">Recuperación de Contraseña</h1>
+                            <h1 style="color: #333333; padding: 1cm;"><b>Recuperación de Contraseña</b></h1>
                         </div>
                         <form class="user">
-                            <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <h2 style="color: aliceblue;">Usuario</h2>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input [formControl]="usuario" class="form-control form-control-user" type="text" id="inputUsuario"
-                                        placeholder="USUARIO" name="inputUsuario" required>
-                                </div>
+                            <div class="example-container" style="text-align: center;">
+                                <mat-form-field appearance="fill" class="col-md-12">
+                                    <mat-label>Ingrese su usuario</mat-label>
+                                    <input matInput [formControl]="usuario" required>
+                                  </mat-form-field>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <h2 style="color: aliceblue;">Correo</h2>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input [formControl]="correo" class="form-control form-control-user" type="email" id="inputCorreo"
-                                        placeholder="CORREO" name="inputCorreo" required>
-                                </div>
+                            <div class="example-container" style="text-align: center;">
+                                <mat-form-field appearance="fill" class="col-md-12">
+                                    <mat-label >Ingrese su correo</mat-label>
+                                    <input matInput placeholder="pat@example.com" [formControl]="correo" required>
+                                    <mat-error *ngIf="correo.invalid">{{getErrorMessage()}}</mat-error>
+                                </mat-form-field>
                             </div>
+<br>
 
                             <div class="row justify-content-center">
-                                <div class="col-sm-6">
-                                    <button (click)="verificar()" class="btn btn-outline-success" type="submit">Recuperar</button>
+                                <div class="col-sm-2">
+                                    <button (click)="verificar()" class="btn btn-outline-dark"
+                                        type="submit">Recuperar</button>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6">
-                                    <a href="/" style="color: aliceblue;">Volver al login</a><br>
-                                    <a href="/CrearUsuario" style="color: aliceblue;">Crear cuenta</a>
+                                    <a href="/" style="color: black;">Login</a><br>
+                                    <a href="/CrearUsuario" style="color: black;">Crear cuenta</a>
                                 </div>
                             </div>
                         </form>
