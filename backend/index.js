@@ -51,13 +51,13 @@ function sendMailCreated(mail, name, user, apellido) {
 
     oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
-    async function sendMail(){
-        try{
+    async function sendMail() {
+        try {
             const accessToken = await oAuth2Client.getAccessToken()
-            const transporter =  nodemailer.createTransport({
+            const transporter = nodemailer.createTransport({
                 service: "gmail",
-                auth:{
-                    type:"OAuth2",
+                auth: {
+                    type: "OAuth2",
                     user: "jonathanadm715@gmail.com",
                     clientId: CLIENTD_ID,
                     clientSecret: CLIENT_SECRET,
@@ -66,14 +66,14 @@ function sendMailCreated(mail, name, user, apellido) {
                 },
             });
             const mailOptions = {
-                from:"<jonathanadm715@gmail.com>",
+                from: "<jonathanadm715@gmail.com>",
                 to: mail,
-                subject:"Creacion Usuario",
+                subject: "Creacion Usuario",
                 html: contentHTML,
             };
             const result = await transporter.sendMail(mailOptions)
             return result;
-        }catch(err){
+        } catch (err) {
             console.log(err);
         }
     }
@@ -117,12 +117,11 @@ app.post('/CreateUser', (req, res) => {
 
         res.json(new usuario(req.nombre, req.apellido, req.usuario, req.correo, req.numero, req.contrasenia, req.fechaNac, req.fechaReg));
         console.log("LLEGA")
-        
+
     }
 
 
 });
-
 
 
 //Post del login
@@ -151,8 +150,108 @@ app.post('/Login', (req, res) => {
     });
 });
 
+//Post aqui se recupera la contrasenia
 app.post('/RecuperarContrasenia', (req, res) => {
 
+});
+
+
+//Aqui se emvian los datos para la tabla de los usuarios que se tienen que dar de alta
+app.post('/DarAlta', (req, res) => {
+    console.log(req.body)
+
+    json = require('../backend/usuarios.json');
+    var datos = [];
+
+    for (let i = 0; i < json.length; i++) {
+        if (!json[i].alta) {
+            datos.push(json[i])
+        }
+    }
+    //res = datos;
+    res.send(datos)
+});
+
+
+//Aqui se emvian los datos para la tabla de los usuarios que se tienen que habilitar
+app.post('/Habilitar', (req, res) => {
+    console.log(req.body)
+
+    json = require('../backend/usuarios.json');
+    var datos = [];
+
+    for (let i = 0; i < json.length; i++) {
+        if (!json[i].able) {
+            datos.push(json[i])
+        }
+    }
+    //res = datos;
+    res.send(datos)
+});
+
+//Aqui se da de alta al usuario
+app.post('/sendAlta', (req, res)=>{
+    json = require('../backend/usuarios.json');
+    for (let i = 0; i < json.length; i++) {
+        if (req.body.usuario == json[i].usuario) {
+            json[i].alta = true;
+        }
+    }
+
+
+    var fs = require('fs');
+    fs.writeFile("usuarios.json", JSON.stringify(json), function (err) {
+        if (err) throw err;
+        console.log('complete');
+    }
+
+    );
+    res.json({
+        user: 'Correct'
+    });
+});
+
+app.post('/eliminar', (req, res)=>{
+    json = require('../backend/usuarios.json');
+    var datos = [];
+    for (let i = 0; i < json.length; i++) {
+        if (req.body.usuario != json[i].usuario) {
+            datos.push(json[i]);
+        }
+    }
+
+    json = datos;
+    var fs = require('fs');
+    fs.writeFile("usuarios.json", JSON.stringify(json), function (err) {
+        if (err) throw err;
+        console.log('complete');
+    }
+
+    );
+    res.json({
+        user: 'Correct'
+    });
+});
+
+app.post('/HabilitarUsuario', (req, res)=>{
+    json = require('../backend/usuarios.json');
+    for (let i = 0; i < json.length; i++) {
+        if (req.body.usuario == json[i].usuario) {
+            json[i].able = true;
+        }
+    }
+
+
+    var fs = require('fs');
+    fs.writeFile("usuarios.json", JSON.stringify(json), function (err) {
+        if (err) throw err;
+        console.log('complete');
+    }
+
+    );
+    res.json({
+        user: 'Correct'
+    });
 });
 
 app.listen(3000, () => {

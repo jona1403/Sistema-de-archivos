@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from '../../services/usuario.service';
 
@@ -22,7 +23,7 @@ export class CrearUsuarioComponent implements OnInit {
   mostrarMensaje = false;
   mostrarMensajeError = false;
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService, public router: Router) { }
 
   ngOnInit(): void {
   }
@@ -68,6 +69,7 @@ export class CrearUsuarioComponent implements OnInit {
       this.FechaNac.setValue("")
       this.contrasenia.setValue("")
       this.confirmContrasenia.setValue("")
+      this.router.navigateByUrl('/')
       console.log("Usuario Creado")
     }, (err) => {
       this.mostrarMensajeError = true

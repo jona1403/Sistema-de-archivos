@@ -1,15 +1,16 @@
-<mat-toolbar>
-  <mat-toolbar color="secondary" style="border-radius: 15px;">
-    <mat-toolbar-row>
-        <mat-icon style="margin-right: 10px;">home</mat-icon>
-        <h1>Manejo e Implementación de Archivos</h1>
-        <span class="example-spacer"></span>
-        <mat-icon style="color: red;" (click)="Logout()">logout</mat-icon>
-    </mat-toolbar-row>
+<p>
+    <mat-toolbar>
+      <mat-icon>menu</mat-icon>
 
-</mat-toolbar>
+    <span>Manejo e Implementación de Archivos</span>
+    <span class="example-spacer"></span>
 
-</mat-toolbar>
+      <mat-icon style="color: red;" (click)="Logout()">logout</mat-icon>
+
+
+  </mat-toolbar>
+  </p>
+
 <mat-tab-group mat-align-tabs="center">
     <mat-tab label="Administración de Carpetas y Archivos">
         <app-admin-carpetas-archivos></app-admin-carpetas-archivos>

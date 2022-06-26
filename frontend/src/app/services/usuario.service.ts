@@ -15,6 +15,8 @@ export class UsuarioService {
 
   }
 
+
+  //Aqui se crean usuarios
   postCreateCliente(usuario:Usuario): Observable<any> {
     const httpOptions = {
       headers : new HttpHeaders({
@@ -24,6 +26,7 @@ export class UsuarioService {
     return this.http.post<any>(baseURL+'CreateUser', usuario, httpOptions)
   }
 
+  //Aqui se verifica si existe el usuario
   postLogin(usuario:Usuariolog): Observable<any> {
     const httpOptions = {
       headers : new HttpHeaders({
@@ -33,7 +36,7 @@ export class UsuarioService {
     return this.http.post<any>(baseURL+'Login', usuario, httpOptions)
   }
 
-
+  //Aqui se recupera la contrasenia
   postRecuperar(usuario:Rec){
     const httpOptions = {
       headers : new HttpHeaders({
@@ -43,6 +46,7 @@ export class UsuarioService {
     return this.http.post<any>(baseURL+'RecuperarContrasenia', usuario, httpOptions)
   }
 
+  //Aqui se obtiene el arreglo con los usuarios que aun no se han dado de alta
   postDarAlta(usuario: string){
     const httpOptions = {
       headers : new HttpHeaders({
@@ -52,6 +56,7 @@ export class UsuarioService {
     return this.http.post<any>(baseURL+'DarAlta', usuario, httpOptions)
   }
 
+  //Aqui se obtiene el arreglo con los usuarios que aun no se han habilitado
   postHabilitar(usuario: string){
     const httpOptions = {
       headers : new HttpHeaders({
@@ -61,4 +66,33 @@ export class UsuarioService {
     return this.http.post<any>(baseURL+'Habilitar', usuario, httpOptions)
   }
   
+  //Aqui se da de alta
+  postEnviarAlta(usuario:Usuario): Observable<any> {
+    const httpOptions = {
+      headers : new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+    return this.http.post<any>(baseURL+'sendAlta', usuario, httpOptions)
+  }
+
+  //Aqui se da de alta
+  postEliminar(usuario:Usuario): Observable<any> {
+    const httpOptions = {
+      headers : new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+    return this.http.post<any>(baseURL+'eliminar', usuario, httpOptions)
+  }
+
+  //Aqui se da de alta
+  postHabilitarusr(usuario:Usuario): Observable<any> {
+    const httpOptions = {
+      headers : new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+    return this.http.post<any>(baseURL+'HabilitarUsuario', usuario, httpOptions)
+  }
 }

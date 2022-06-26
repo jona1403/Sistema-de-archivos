@@ -3,34 +3,34 @@
         <!-- Position Column -->
         <ng-container matColumnDef="usuario">
             <th mat-header-cell *matHeaderCellDef style="font-size: 20px;"> Usuario </th>
-            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.usuario}} </td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="nombre">
             <th mat-header-cell *matHeaderCellDef style="font-size: 20px;"> Nombre </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
         </ng-container>
 
         <!-- Weight Column -->
         <ng-container matColumnDef="apellido">
             <th mat-header-cell *matHeaderCellDef style="font-size: 20px;"> Apellido </th>
-            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="correo">
             <th mat-header-cell *matHeaderCellDef style="font-size: 20px;"> Correo </th>
-            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
         </ng-container>
 
         <ng-container matColumnDef="acciones" style="text-align: center;">
             <th mat-header-cell *matHeaderCellDef style="font-size: 20px; text-align: center;"> Habilitar</th>
-            <td mat-cell *matCellDef="let element" style="text-align: center;">
-                <a class="pointer" style="color: red;" matTooltip="Eliminar usuario">
+            <td mat-cell *matCellDef="let element; let i = index" style="text-align: center;">
+                <a class="pointer" style="color: red;" matTooltip="Eliminar usuario" (click)="_Delete(i)">
                     <mat-icon>dangerous</mat-icon>
                 </a>
-                <a class="pointer" style="color: green;" matTooltip="Habilitar usuario">
+                <a class="pointer" style="color: green;" matTooltip="Habilitar usuario" (click)="_Habilitar(i)">
                     <mat-icon>checklist</mat-icon>
                 </a>
                     

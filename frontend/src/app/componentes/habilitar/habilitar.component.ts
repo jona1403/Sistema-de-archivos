@@ -1,26 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export interface usr{
+  nombre: string
+  apellido: string
+  usuario: string
+  correo: string
+  numero: number
+  contrasenia: string
+  fechaNac: string
+  fechaReg: string
+  able: boolean
+  alta: boolean
+  type: number
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
-
 
 
 @Component({
@@ -29,11 +23,41 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./habilitar.component.css']
 })
 export class HabilitarComponent implements OnInit {
+  ELEMENT_DATA: usr[]= [];
   displayedColumns: string[] = ['usuario', 'nombre', 'apellido', 'correo', 'acciones'];
-  dataSource = ELEMENT_DATA;
-  constructor() { }
+  dataSource !: MatTableDataSource<any>;
+  constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
+    this.UsuariosHabilitar();
   }
+
+  UsuariosHabilitar() {
+    this.usuarioService.postHabilitar("").subscribe((res: any) => {
+
+      
+      console.log(res)
+      this.ELEMENT_DATA = res;
+      this.dataSource  = new MatTableDataSource(this.ELEMENT_DATA);
+
+    }, (err) => {
+      console.log(err)
+    })
+  }
+
+_Delete(index:number){
+  console.log(index)
+  this.usuarioService.postEliminar(this.ELEMENT_DATA[index]).subscribe((res:any)=>{
+    console.log(res)
+  })
+  this.UsuariosHabilitar();
+}
+_Habilitar(index:number){
+  console.log(index)
+  this.usuarioService.postHabilitarusr(this.ELEMENT_DATA[index]).subscribe((res:any)=>{
+    console.log(res)
+  })
+  this.UsuariosHabilitar();
+}
 
 }
