@@ -1,0 +1,23 @@
+digraph G{fontname="Helvetica,Arial,sans-serif"node [fontname="Helvetica,Arial,sans-serif"]edge [fontname="Helvetica,Arial,sans-serif"]concentrate=True;rankdir=TB;node [shape=record];1 [label="{INODO|{Tipo: |0}|{Tamanio: |0}|{AD1: |41977}|{AD2: |-1}|{AD3: |-1}|{AD4: |-1}|{AD5: |-1}|{AD6: |-1}|{AD7: |-1}|{AD8: |-1}|{AD9: |-1}|{AD10: |-1}|{AD11: |-1}|{AD12: |-1}|{AD13: |-1}|{AD14: |-1}|{AD15: |-1}}"]2 [label="{Bloque|{Padre: |}|{Nombre: |root}|{API: |29601}|{API: |29705}|{API: |29809}|{API: |-1}}"]
+1->2
+
+2->3
+3 [label="{INODO|{Tipo: |1}|{Tamanio: |26}|{AD1: |42065}|{AD2: |-1}|{AD3: |-1}|{AD4: |-1}|{AD5: |-1}|{AD6: |-1}|{AD7: |-1}|{AD8: |-1}|{AD9: |-1}|{AD10: |-1}|{AD11: |-1}|{AD12: |-1}|{AD13: |-1}|{AD14: |-1}|{AD15: |-1}}"]
+3->4
+4 [label="{Bloque Archivo|{Contenido: |1,G,root1,U,root,root,123}}"]
+2->5
+5 [label="{INODO|{Tipo: |0}|{Tamanio: |0}|{AD1: |42153}|{AD2: |-1}|{AD3: |-1}|{AD4: |-1}|{AD5: |-1}|{AD6: |-1}|{AD7: |-1}|{AD8: |-1}|{AD9: |-1}|{AD10: |-1}|{AD11: |-1}|{AD12: |-1}|{AD13: |-1}|{AD14: |-1}|{AD15: |-1}}"]6 [label="{Bloque|{Padre: |root}|{Nombre: |home}|{API: |-1}|{API: |-1}|{API: |-1}|{API: |-1}}"]
+5->6
+
+2->7
+7 [label="{INODO|{Tipo: |0}|{Tamanio: |0}|{AD1: |42241}|{AD2: |-1}|{AD3: |-1}|{AD4: |-1}|{AD5: |-1}|{AD6: |-1}|{AD7: |-1}|{AD8: |-1}|{AD9: |-1}|{AD10: |-1}|{AD11: |-1}|{AD12: |-1}|{AD13: |-1}|{AD14: |-1}|{AD15: |-1}}"]8 [label="{Bloque|{Padre: |root}|{Nombre: |nombre}|{API: |29913}|{API: |-1}|{API: |-1}|{API: |-1}}"]
+7->8
+
+8->9
+9 [label="{INODO|{Tipo: |0}|{Tamanio: |0}|{AD1: |42329}|{AD2: |-1}|{AD3: |-1}|{AD4: |-1}|{AD5: |-1}|{AD6: |-1}|{AD7: |-1}|{AD8: |-1}|{AD9: |-1}|{AD10: |-1}|{AD11: |-1}|{AD12: |-1}|{AD13: |-1}|{AD14: |-1}|{AD15: |-1}}"]10 [label="{Bloque|{Padre: |nombre}|{Nombre: |carpeta}|{API: |30017}|{API: |-1}|{API: |-1}|{API: |-1}}"]
+9->10
+
+10->11
+11 [label="{INODO|{Tipo: |1}|{Tamanio: |0}|{AD1: |42417}|{AD2: |-1}|{AD3: |-1}|{AD4: |-1}|{AD5: |-1}|{AD6: |-1}|{AD7: |-1}|{AD8: |-1}|{AD9: |-1}|{AD10: |-1}|{AD11: |-1}|{AD12: |-1}|{AD13: |-1}|{AD14: |-1}|{AD15: |-1}}"]
+11->12
+12 [label="{Bloque Archivo|{Contenido: |ElArchivoesescritoasi}}"]}

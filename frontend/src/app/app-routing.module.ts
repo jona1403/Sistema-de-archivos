@@ -8,6 +8,8 @@ import { InicioAdminComponent } from './componentes/inicio-admin/inicio-admin.co
 import { DardeAltaComponent } from './componentes/darde-alta/darde-alta.component';
 import { HabilitarComponent } from './componentes/habilitar/habilitar.component';
 import { AdminCarpetasArchivosComponent } from './componentes/admin-carpetas-archivos/admin-carpetas-archivos.component';
+import { NotFoundComponent } from './componentes/not-found/not-found.component';
+import { InicioUsuarioComponent } from './componentes/inicio-usuario/inicio-usuario.component';
 
 const routes: Routes = [
   {
@@ -31,6 +33,10 @@ const routes: Routes = [
     component: InicioAdminComponent,
   },
   {
+    path: 'inicioUsuario',
+    component: InicioAdminComponent,
+  },
+  {
     path: 'DarDeAlta',
     component: DardeAltaComponent,
   },
@@ -41,6 +47,10 @@ const routes: Routes = [
   {
     path: 'AdministrarCarpetasArchivos',
     component: AdminCarpetasArchivosComponent,
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
 

@@ -1,1 +1,10 @@
-<p>admin-carpetas-archivos works!</p>
+<div class="container">
+    <div class="rounded card shadow-lg o-hidden border-0 my-5" style="padding: 10px;">
+        <div class="card-body p-0" style="text-align: center;">
+            <form class="example-form" style="text-align: center;">
+                <input type="file" required [formControl]="path">
+            </form><br>
+            <button type="button" class="btn btn-outline-dark" (click)="open()">Abrir</button>
+        </div>
+    </div>
+</div>

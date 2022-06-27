@@ -1,0 +1,24 @@
+Mkdisk $size=>32 $path=>"/home/jalvarado/Documentos/discos/" $name=>Disco1.dsk
+Mkdisk $size=>16 $path=>"/home/jalvarado/Documentos/discos/" $name=>Disco2.dsk
+rMdisk $path=>"/home/jalvarado/Documentos/discos/Disco2.dsk"
+fdisk $sizE=>72 $path=>/home/jalvarado/Documentos/discos/Disco1.dsk $name=>Particion1
+fdisk $sizE=>80 @type=>e $path=>/home/jalvarado/Documentos/discos/Disco1.dsk $name=>Particion2
+fdisk $sizE=>40 @type=>l $path=>/home/jalvarado/Documentos/discos/Disco1.dsk $name=>Particion3
+fdisk $sizE=>96 $path=>/home/jalvarado/Documentos/discos/Disco1.dsk $name=>Particion4
+mount $path=>/home/jalvarado/Documentos/discos/Disco1.dsk $name=>Particion1
+mount $path=>/home/jalvarado/Documentos/discos/Disco1.dsk $name=>Particion3
+MkfS $id=>vdA1 @type=>fast
+MkfS $id=>vdA2 @type=>fast
+Mkdir $ID=>vdA1 $path=>"/root/home/"
+Mkdir $ID=>vdA1 $path=>"/root/nombre/"
+Mkdir $ID=>vdA1 $path=>"/root/nombre/carpeta/"
+rep $path=>disco.png $name=>disk $ID=>vdA1
+rep $path=>mbr.png $name=>mbr $ID=>vdA1
+rep $path=>SB.png $name=>SB $ID=>vdA1
+mkfile $ID=>vdA1 $path=>"/root/nombre/carpeta/texto.txt" @cont=>ElArchivoesescritoasi
+rep $path=>tree.png $name=>tree $ID=>vdA1
+Syncronice $path=>tree.png $ID=>vdA1
+rep $path=>bminode.png $name=>bm_inode $ID=>vdA1
+rep $path=>bmbloque.png $name=>bm_block $ID=>vdA1
+rep $path=>inode.png $name=>inode $ID=>vdA1
+rep $path=>bloque.png $name=>block $ID=>vdA1

@@ -132,9 +132,10 @@ app.post('/Login', (req, res) => {
     let encontrado = -1;
 
 
+
     var datos = json; //leerJSON('usuarios.json');
     for (var i = 0; i < datos.length; i++) {
-        if (req.body.usr == datos[i].usuario) {
+        if (req.body.usr == datos[i].correo) {
             encontrado = i;
             break;
         }
@@ -144,10 +145,6 @@ app.post('/Login', (req, res) => {
     } else {
         res.json(new usuario('', '', '', '', 0, '', '', '',));
     }
-
-    res.json({
-        user: 'Correct'
-    });
 });
 
 //Post aqui se recupera la contrasenia
@@ -254,6 +251,21 @@ app.post('/HabilitarUsuario', (req, res)=>{
     });
 });
 
+
+app.post('/Syncronyze', (req, res) => {
+    console.log(req.body)
+
+    /*json = require('../backend/usuarios.json');
+    var datos = [];
+
+    for (let i = 0; i < json.length; i++) {
+        if (!json[i].alta) {
+            datos.push(json[i])
+        }
+    }*/
+    //res = datos;
+    res.send(datos)
+});
 app.listen(3000, () => {
     console.log("Servidor en el puerto 3000")
 });

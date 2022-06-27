@@ -23,6 +23,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTableModule} from '@angular/material/table';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { NotFoundComponent } from './componentes/not-found/not-found.component';
+import { InicioUsuarioComponent } from './componentes/inicio-usuario/inicio-usuario.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     InicioAdminComponent,
     DardeAltaComponent,
     HabilitarComponent,
-    AdminCarpetasArchivosComponent
+    AdminCarpetasArchivosComponent,
+    NotFoundComponent,
+    InicioUsuarioComponent
   ],
   imports: [
     BrowserModule,
