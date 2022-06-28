@@ -5,6 +5,7 @@ const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 //const estructs = require('../backend/structs/');
 let json = require('../backend/usuarios.json');
+let sync = 
 //cargarCodigo
 
 class usuario {
@@ -251,21 +252,25 @@ app.post('/HabilitarUsuario', (req, res)=>{
     });
 });
 
-
-app.post('/Syncronyze', (req, res) => {
+//Metodo post para el syncronice
+app.post('/Syncronize', (req, res) => {
     console.log(req.body)
 
-    /*json = require('../backend/usuarios.json');
     var datos = [];
-
-    for (let i = 0; i < json.length; i++) {
-        if (!json[i].alta) {
-            datos.push(json[i])
-        }
-    }*/
+    datos = require('../backend/Syncronice.json');
     //res = datos;
     res.send(datos)
 });
+
+function arbolRecursivo(datos, carpeta, propietario){}
+
+app.post('/ChangeProperty',(req, res)=>{
+console.log(req.body)
+    var datos = [];
+    datos = require('../backend/Syncronice.json');
+    datos = arbolRecursivo(datos, req.body.nombreCarpeta, req.body.nuevoPropietario);
+});
+
 app.listen(3000, () => {
     console.log("Servidor en el puerto 3000")
 });

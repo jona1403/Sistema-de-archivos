@@ -323,6 +323,7 @@ void mkfs ::formatear(mkfs *disco)
     fclose(file);
     // Bloque de archivo de usuario
     Bloque_archivos usuariostxt;
+    strcpy(usuariostxt.name, "Usuarios.txt");
     strcpy(usuariostxt.b_content, "1,G,root1,U,root,root,123");
 
     file = fopen(discoaux.disk_path.c_str(), "rb+");

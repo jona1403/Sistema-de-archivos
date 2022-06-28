@@ -1202,12 +1202,13 @@ string rep ::SyncroniceRecursivo(int posInodo, string pathfisc, int n, int start
                     fclose(file);
 
                     graph += "{\n";
-                    graph += "\"nombre\":\"\",\n";
+                    string nmbre = auxarchivo.name;
+                    graph += "\"nombre\":\""+nmbre+"\",\n";
                     graph += "\"propietario\":\"\",\n";
                     graph += "\"tipo\":1,\n";
                     graph += "\"grupo\":[],\n";
                     string bc = auxarchivo.b_content;
-                    graph += "\"contenido\":\""+bc+"\"";
+                    graph += "\"texto\":\""+bc+"\"";
                     graph+= "}";
                     if (i < 14)
                     {

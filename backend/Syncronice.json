@@ -6,11 +6,11 @@
 "grupo":[],
 "contenido":[
 {
-"nombre":"",
+"nombre":"Usuarios.txt",
 "propietario":"",
 "tipo":1,
 "grupo":[],
-"contenido":"1,G,root1,U,root,root,123"}
+"texto":"1,G,root1,U,root,root,123"}
 ,
 {
 "nombre":"home",
@@ -35,11 +35,11 @@
 "grupo":[],
 "contenido":[
 {
-"nombre":"",
+"nombre":"texto.txt",
 "propietario":"",
 "tipo":1,
 "grupo":[],
-"contenido":"ElArchivoesescritoasi"}
+"texto":"ElArchivoesescritoasi"}
 ]
 }
 

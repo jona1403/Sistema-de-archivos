@@ -1,10 +1,38 @@
 <div class="container">
-    <div class="rounded card shadow-lg o-hidden border-0 my-5" style="padding: 10px;">
-        <div class="card-body p-0" style="text-align: center;">
-            <form class="example-form" style="text-align: center;">
-                <input type="file" required [formControl]="path">
-            </form><br>
-            <button type="button" class="btn btn-outline-dark" (click)="open()">Abrir</button>
+  <div class="rounded card shadow-lg o-hidden border-0 my-5" style="padding: 10px;">
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+      <!-- This is the tree node template for leaf nodes -->
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+        <!-- use a disabled button to provide padding for tree leaf -->
+        <div class="col-sm-3">{{node.name}}</div>
+        <div class="col-sm-3"><a>El propietario actual es: </a>{{node.property}}</div>
+        <div class="col-sm-3">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Cambiar Propietario</mat-label>
+          <input matInput placeholder="Ej.Jonathan" value="" [formControl]="nombreNuevo">
+        </mat-form-field></div>
+        <div class="col-sm-3"><button (click)="addProperty(node.name, node.level)" class="btn btn-outline-dark" style="padding-left: 10px;" type="submit">Cambiar</button></div>
+        
+      </mat-tree-node>
+      <!-- This is the tree node template for expandable nodes -->
+      <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+        <div class="col-sm-3">
+          <mat-icon class="mat-icon-rtl-mirror" matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+
+          {{node.name}}
         </div>
-    </div>
+        <div class="col-sm-3"><a>El propietario actual es: </a>{{node.property}}</div>
+        <div class="col-sm-3">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Cambiar Propietario</mat-label>
+            <input matInput placeholder="Ej.Jonathan" value="" [formControl]="nombreNuevo">
+          </mat-form-field></div>
+          <div class="col-sm-3"><button (click)="addProperty(node.name, node.level)" class="btn btn-outline-dark" style="padding-left: 10px;" type="submit">Cambiar</button></div>
+        
+
+      </mat-tree-node>
+    </mat-tree>
+  </div>
 </div>

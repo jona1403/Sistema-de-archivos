@@ -25,6 +25,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { NotFoundComponent } from './componentes/not-found/not-found.component';
 import { InicioUsuarioComponent } from './componentes/inicio-usuario/inicio-usuario.component';
+import {MatTreeModule} from '@angular/material/tree';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { InicioUsuarioComponent } from './componentes/inicio-usuario/inicio-usua
     MatTabsModule,
     MatToolbarModule,
     MatTableModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

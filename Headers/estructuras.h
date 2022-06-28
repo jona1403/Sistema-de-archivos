@@ -113,7 +113,8 @@ typedef struct{
 }Bloque_Carpetas;
 
 typedef struct{
-    char b_content[88];
+    char name[15];
+    char b_content[73];
 }Bloque_archivos;
 
 typedef struct{

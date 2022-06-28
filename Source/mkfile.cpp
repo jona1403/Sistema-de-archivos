@@ -167,6 +167,7 @@ void mkfile ::createRecursivo(int posInodo, string path, string pathfisc, int po
                                 fclose(file);
 
                                 Bloque_archivos bloquearch;
+                                strcpy(bloquearch.name, nm.c_str());
                                 strcpy(bloquearch.b_content, contenido.c_str());
                                 //Bloque_Carpetas Bloque_Aux;
 
