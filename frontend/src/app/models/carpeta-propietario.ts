@@ -8,6 +8,5 @@ export class CarpetaPropietario {
         this.nombreCarpeta = _nombreCarpeta;
         this.nuevoPropietario = _nuevoPropietario;
         this.nivel = _nivel;
-
-    }
+}
 }
