@@ -37,6 +37,15 @@ export class UsuarioService {
     return this.http.post<any>(baseURL + 'Login', usuario, httpOptions)
   }
 
+  postDeshabilitar(usuario: Usuariolog): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+    return this.http.post<any>(baseURL + 'Dishable', usuario, httpOptions)
+  }
+
   //Aqui se recupera la contrasenia
   postRecuperar(usuario: Rec) {
     const httpOptions = {
@@ -115,5 +124,14 @@ export class UsuarioService {
     return this.http.post<any>(baseURL + 'Syncronize', usuario, httpOptions)
   }
 
+
+  postCarpetasUsuarios(usuario: Usuario) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+    return this.http.post<any>(baseURL + 'archivosUsuario', usuario, httpOptions)
+  }
 
 }

@@ -162,7 +162,10 @@ export class AdminCarpetasArchivosComponent implements OnInit {
       console.log(err)
     })
     this.Syncronize();
+    this.nombreNuevo.setValue("")
   }
+
+
 
 
 }
