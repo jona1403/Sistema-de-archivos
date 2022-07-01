@@ -85,7 +85,7 @@ app.post('/CreateUser', (req, res) => {
 
     var datos = json; //leerJSON('usuarios.json');
     for (var i = 0; i < datos.length; i++) {
-        if (req.body.usr == datos[i].usuario) {
+        if (req.body.usuario == datos[i].usuario) {
             encontrado = i;
             break;
         }
@@ -128,6 +128,34 @@ app.post('/CreateUser', (req, res) => {
 
 });
 
+app.post('/UpdateUser', (req, res) => {
+    console.log(req.body.usuario)
+    json = require('../backend/usuarios.json');
+    let encontrado = -1;
+
+    var datos = json; //leerJSON('usuarios.json');
+    for (var i = 0; i < datos.length; i++) {
+        if (req.body.correo == datos[i].correo) {
+
+            datos[i].nombre = req.body.nombre;
+            datos[i].apellido = req.body.apellido;
+            datos[i].usuario = req.body.usuario;
+            datos[i].numero = req.body.numero;
+            datos[i].contrasenia = req.body.contrasenia;
+            var fs = require('fs');
+            fs.writeFile("usuarios.json", JSON.stringify(datos), function (err) {
+                if (err) throw err;
+                console.log('complete');
+            }
+
+            );
+        }
+    }
+
+    res.json({
+        user: 'Correct'
+    });
+});
 
 //Post del login
 app.post('/Login', (req, res) => {
@@ -501,12 +529,12 @@ function arbolRecursivoAddFicheros(datos, carpeta, tipo) {
 
     for (var i = 0; i < datos.length; i++) {
         if (datos[i].nombre == carpeta) {
-            if(datos[i].tipo == 0){
+            if (datos[i].tipo == 0) {
                 var datoss;
-                if(tipo = 0){
-                    datoss = {nombre:carpeta, propietario:datos[i].propietario, tipo: tipo, grupo:datos[i].grupo, contenido:[]}
-                }else{
-                    datoss = {nombre:carpeta, propietario:datos[i].propietario, tipo: tipo, grupo:datos[i].grupo, texto:""}
+                if (tipo = 0) {
+                    datoss = { nombre: carpeta, propietario: datos[i].propietario, tipo: tipo, grupo: datos[i].grupo, contenido: [] }
+                } else {
+                    datoss = { nombre: carpeta, propietario: datos[i].propietario, tipo: tipo, grupo: datos[i].grupo, texto: "" }
                 }
                 datos[i].contenido.push(datoss)
             }

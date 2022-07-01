@@ -28,6 +28,8 @@ import { InicioUsuarioComponent } from './componentes/inicio-usuario/inicio-usua
 import {MatTreeModule} from '@angular/material/tree';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
+import { EditarCarpetasComponent } from './componentes/editar-carpetas/editar-carpetas.component';
+import { ActualizarCuentaComponent } from './componentes/actualizar-cuenta/actualizar-cuenta.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import {MatRadioModule} from '@angular/material/radio';
     HabilitarComponent,
     AdminCarpetasArchivosComponent,
     NotFoundComponent,
-    InicioUsuarioComponent
+    InicioUsuarioComponent,
+    EditarCarpetasComponent,
+    ActualizarCuentaComponent
   ],
   entryComponents:[]
   ,

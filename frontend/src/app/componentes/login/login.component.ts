@@ -42,6 +42,9 @@ export class LoginComponent implements OnInit {
         usuarioLogueado.nombre = res.nombre;
         usuarioLogueado.apellido = res.apellido;
         usuarioLogueado.usuario = res.usuario;
+        usuarioLogueado.numero = res.numero;
+        usuarioLogueado.contrasenia = res.contrasenia;
+        usuarioLogueado.correo = res.correo;
         console.log(usuarioLogueado)
         this.router.navigateByUrl('/inicio');
         this.mostrarMensaje = true;

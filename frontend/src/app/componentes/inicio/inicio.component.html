@@ -3,7 +3,7 @@
   <div class="col-sm-12" style="text-align: center;"><img src="../../../assets/user.png"><br><br>
     <a href="#">{{nombre}}</a>
   </div><br>
-  <a href="#">About</a>
+  <a [routerLink]="['/inicio/ActualizarCuenta']">Cuenta</a>
   <a href="#">Services</a>
   <a href="#">Clients</a>
   <a href="#">Contact</a>
@@ -38,7 +38,7 @@
         <!-- use a disabled button to provide padding for tree leaf -->
         <div class="col-sm-6">{{node.name}}</div>
         <div class="col-sm-6" style="text-align: right;">
-          <a class="pointer" style="color: Blue;" matTooltip="Modificar Carpeta/Archivo">
+          <a class="pointer" style="color: Blue;" matTooltip="Modificar Carpeta/Archivo" [routerLink]="['/inicio/EditarCarpetas']">
             <mat-icon>update</mat-icon>
           </a>
           <a class="pointer" style="color: red;" matTooltip="Eliminar Carpeta/Archivo" (click)="EliminarCarpeta(node.name)">
@@ -137,22 +137,13 @@
 </div>
 <div class="col-sm-9" style="float: left; padding-left: 10px;">
   <div class="rounded card shadow-lg o-hidden border-0 my-5" style="padding: 10px;">
-    <form>
+    <!--<form>
       <mat-form-field class="col-sm-12" appearance="fill">
         <mat-label>Buscar</mat-label>
         <input type="text" matInput placeholder="Ej.Carpeta 1">
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
-    </form>
+    </form>-->
     <router-outlet></router-outlet>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus recusandae quam aperiam quas consequatur
-      incidunt et esse minus magnam quis vitae, neque autem ab modi, quo ipsum cumque tempore corporis.
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque earum placeat quo esse suscipit, cumque
-      doloribus soluta hic maiores dicta deserunt voluptatem nulla nemo aliquam blanditiis. Laboriosam numquam repellat
-      pariatur!
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora maiores harum laborum, perspiciatis neque
-      temporibus voluptate inventore nesciunt accusamus provident repellendus culpa corrupti odio ut dignissimos minima
-      rem aspernatur explicabo!
-    </p>
   </div>
 </div>

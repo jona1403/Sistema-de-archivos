@@ -26,7 +26,16 @@ export class UsuarioService {
     };
     return this.http.post<any>(baseURL + 'CreateUser', usuario, httpOptions)
   }
-
+  //Aqui se actualizan los usuarios
+  postUpdateUser(usuario: Usuario): Observable<any> {
+    console.log(usuario)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+    return this.http.post<any>(baseURL + 'UpdateUser', usuario, httpOptions)
+  }
   //Aqui se verifica si existe el usuario
   postLogin(usuario: Usuariolog): Observable<any> {
     const httpOptions = {
