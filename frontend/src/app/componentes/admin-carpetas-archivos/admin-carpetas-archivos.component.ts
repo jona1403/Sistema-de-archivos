@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import {FlatTreeControl} from '@angular/cdk/tree';
-import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { CarpetaPropietario } from 'src/app/models/carpeta-propietario';
 
-export interface archivo{
+export interface archivo {
   nombre: string,
   propietario: string,
   tipo: number,
   grupo: string[],
   texto: string
 }
-export interface carpeta{
+export interface carpeta {
   nombre: string,
   propietario: string,
   tipo: number,
@@ -51,7 +51,7 @@ interface ExampleFlatNode {
   expandable: boolean;
   name: string;
   level: number;
-  property:string;
+  property: string;
 }
 
 
@@ -111,7 +111,7 @@ export class AdminCarpetasArchivosComponent implements OnInit {
 
 
 
-  constructor(private usuarioService: UsuarioService) { 
+  constructor(private usuarioService: UsuarioService) {
     //this.dataSource.data = TREE_DATA;
   }
 
@@ -145,10 +145,10 @@ export class AdminCarpetasArchivosComponent implements OnInit {
     })
   }
 
-  addProperty(Carpeta:string, nivel:number){
+  addProperty(Carpeta: string, nivel: number) {
 
 
-    const carpeta: CarpetaPropietario={
+    const carpeta: CarpetaPropietario = {
       nombreCarpeta: Carpeta,
       nuevoPropietario: this.nombreNuevo.value as string,
       nivel: nivel
@@ -165,7 +165,25 @@ export class AdminCarpetasArchivosComponent implements OnInit {
     this.nombreNuevo.setValue("")
   }
 
+  addColaborador(Carpeta: string, nivel: number) {
 
+
+    const carpeta: CarpetaPropietario = {
+      nombreCarpeta: Carpeta,
+      nuevoPropietario: this.nombreNuevo.value as string,
+      nivel: nivel
+    }
+
+
+
+    this.usuarioService.postAddColaborador(carpeta).subscribe((res: any) => {
+      console.log(res)
+    }, (err) => {
+      console.log(err)
+    })
+    this.Syncronize();
+    this.nombreNuevo.setValue("")
+  }
 
 
 }

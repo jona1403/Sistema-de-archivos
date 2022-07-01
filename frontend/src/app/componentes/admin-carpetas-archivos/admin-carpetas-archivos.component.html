@@ -8,10 +8,13 @@
         <div class="col-sm-3"><a>El propietario actual es: </a>{{node.property}}</div>
         <div class="col-sm-3">
         <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Cambiar Propietario</mat-label>
+          <mat-label>Ingresar usuario</mat-label>
           <input matInput placeholder="Ej.Jonathan" value="" [formControl]="nombreNuevo">
         </mat-form-field></div>
-        <div class="col-sm-3"><button (click)="addProperty(node.name, node.level)" class="btn btn-outline-dark" style="padding-left: 10px;" type="submit">Cambiar</button></div>
+        <div class="col-sm-3">
+          <button (click)="addProperty(node.name, node.level)" class="btn btn-outline-dark" style="padding-left: 10px;" type="submit">Propietario</button>
+          <button (click)="addColaborador(node.name, node.level)" class="btn btn-outline-dark" style="padding-left: 10px;" type="submit">Colaborador</button>
+        </div>
         
       </mat-tree-node>
       <!-- This is the tree node template for expandable nodes -->
@@ -26,10 +29,13 @@
         <div class="col-sm-3"><a>El propietario actual es: </a>{{node.property}}</div>
         <div class="col-sm-3">
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Cambiar Propietario</mat-label>
+            <mat-label>Ingresar usuario</mat-label>
             <input matInput placeholder="Ej.Jonathan" value="" [formControl]="nombreNuevo">
           </mat-form-field></div>
-          <div class="col-sm-3"><button (click)="addProperty(node.name, node.level)" class="btn btn-outline-dark" style="padding-left: 10px;" type="submit">Cambiar</button></div>
+          <div class="col-sm-3">
+            <button (click)="addProperty(node.name, node.level)" class="btn btn-outline-dark" style="padding-left: 10px;" type="submit">Propietario</button>
+            <button (click)="addColaborador(node.name, node.level)" class="btn btn-outline-dark" style="padding-left: 10px;" type="submit">Colaborador</button>
+          </div>
         
 
       </mat-tree-node>

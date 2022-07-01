@@ -5,7 +5,9 @@ const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 //const estructs = require('../backend/structs/');
 let json = require('../backend/usuarios.json');
+const { Console } = require('console');
 let archivosUsuario = []
+let archivosColaboracion = []
 
 class usuario {
     constructor(_nombre, _apellido, _usuario, _correo, _numero, _contrasenia, _fechanac, _fechaReg) {
@@ -24,7 +26,7 @@ class usuario {
 }
 
 
-function Mail(mail, content, subject){
+function Mail(mail, content, subject) {
     const CLIENTD_ID = "469774724828-hfklhmo78n75sha8lqvkqmd09u9m2hdr.apps.googleusercontent.com";
     const CLIENT_SECRET = "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";
     const REDIRECT_URI = "https://developers.google.com/oauthplayground";
@@ -56,7 +58,7 @@ function Mail(mail, content, subject){
                 from: "<jonathanadm715@gmail.com>",
                 to: mail,
                 subject: subject,
-                html: content, 
+                html: content,
             };
             const result = await transporter.sendMail(mailOptions)
             return result;
@@ -67,64 +69,6 @@ function Mail(mail, content, subject){
     sendMail()
 }
 
-
-/*function sendMailCreated(mail, name, user, apellido) {
-    contentHTML = `
-    <div><p>Bienvenido al proyecto 2 del curso de manejo e implementación de archivos,
-    su cuenta fue creada exitosamente, porfavor espere a que el administrador habilite su cuenta
-    para poder acceder a su cuenta.</p></div><br>        
-    <div>
-        <h1>Información de la cuenta</h1><br>
-        <ul>
-            <li>Nombre: ${name}</li>
-            <li>Apellido: ${apellido}</li>
-            <li>Usuario: ${user}</li>
-        </ul>
-    </div>
-    `;
-
-    const CLIENTD_ID = "520082111374-kag96mv6ha5pvfq8lop9600sps0480m0.apps.googleusercontent.com";
-    const CLIENT_SECRET = "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";
-    const REDIRECT_URI = "https://developers.google.com/oauthplayground";
-    const REFRESH_TOKEN = "1//04Iyi0XKrgtKKCgYIARAAGAQSNwF-L9IrpWkK5UBDonFcCYezoBrv8fuJf0U4utrmdh0DXPppGAIwWIp8sBs5jXL2KR8_RD-N5AQ";
-
-    const oAuth2Client = new google.auth.OAuth2(
-        CLIENTD_ID,
-        CLIENT_SECRET,
-        REDIRECT_URI
-    );
-
-    oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
-
-    async function sendMail() {
-        try {
-            const accessToken = await oAuth2Client.getAccessToken()
-            const transporter = nodemailer.createTransport({
-                service: "gmail",
-                auth: {
-                    type: "OAuth2",
-                    user: "jonathanadm715@gmail.com",
-                    clientId: CLIENTD_ID,
-                    clientSecret: CLIENT_SECRET,
-                    refreshToken: REFRESH_TOKEN,
-                    accessToken: accessToken
-                },
-            });
-            const mailOptions = {
-                from: "<jonathanadm715@gmail.com>",
-                to: mail,
-                subject: "Creacion Usuario",
-                html: contentHTML,
-            };
-            const result = await transporter.sendMail(mailOptions)
-            return result;
-        } catch (err) {
-            console.log(err);
-        }
-    }
-    sendMail()
-
-}*/
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -372,6 +316,51 @@ app.post('/ChangeProperty', (req, res) => {
     });
 });
 
+function recursivoPropG(datos, propietario) {
+    for (var i = 0; i < datos.length; i++) {
+
+        datos[i].grupo.push(propietario);
+        if (datos[i].tipo == 0) {
+            datos[i].contenido = recursivoPropG(datos[i].contenido, propietario)
+        }
+    }
+    return datos;
+}
+
+function arbolRecursivoG(datos, carpeta, propietario) {
+    for (var i = 0; i < datos.length; i++) {
+        if (datos[i].nombre == carpeta) {
+            datos[i].grupo.push(propietario);
+            if (datos[i].tipo == 0) {
+                datos[i].contenido = recursivoPropG(datos[i].contenido, propietario)
+            }
+            return datos;
+        }
+        if (datos[i].tipo == 0) {
+            datos[i].contenido = arbolRecursivoG(datos[i].contenido, carpeta, propietario)
+        }
+    }
+    return datos;
+}
+
+app.post('/addColaborador', (req, res) => {
+    console.log(req.body)
+    var datos = [];
+    datos = require('../backend/Syncronice.json');
+    datos = arbolRecursivoG(datos, req.body.nombreCarpeta, req.body.nuevoPropietario);
+
+    var fs = require('fs');
+    fs.writeFile("Syncronice.json", JSON.stringify(datos), function (err) {
+        if (err) throw err;
+        console.log('complete');
+    }
+
+    );
+    res.json({
+        user: 'Correct'
+    });
+});
+
 app.post('/Dishable', (req, res) => {
     json = require('../backend/usuarios.json');
     for (let i = 0; i < json.length; i++) {
@@ -432,6 +421,122 @@ app.post('/archivosUsuario', (req, res) => {
     //res = datos;
     res.send(archivosUsuario)
     archivosUsuario = []
+});
+
+
+function arbolColab(datos, propietario) {
+    bandera = false;
+    for (var i = 0; i < datos.length; i++) {
+
+        for (var j = 0; j < datos[i].grupo.length; j++) {
+            if (datos[i].grupo[j] == propietario) {
+                bandera = true;
+                break;
+            }
+        }
+        if (bandera) {
+            console.log('Entra')
+            console.log(datos[i].nombre)
+            archivosColaboracion.push(datos[i])
+            bandera = false;
+            //return datos;
+        } else {
+            if (datos[i].tipo == 0) {
+                arbolColab(datos[i].contenido, propietario)
+                //datos[i].contenido = arbolRecursivo(datos[i].contenido, carpeta, propietario)
+            }
+        }
+    }
+}
+
+app.post('/ArchivosColavoracion', (req, res) => {
+    console.log(req.body.usuario)
+
+    var datos = [];
+    datos = require('../backend/Syncronice.json');
+    arbolColab(datos, req.body.usuario);
+    //res = datos;
+    res.send(archivosColaboracion)
+    archivosColaboracion = []
+});
+
+
+function arbolRecursivoDelFichero(datos, carpeta) {
+    var datos2 = [];
+    for (var i = 0; i < datos.length; i++) {
+        if (datos[i].nombre == carpeta) {
+
+        } else {
+            if (datos[i].tipo == 0) {
+                datos[i].contenido = arbolRecursivoDelFichero(datos[i].contenido, carpeta)
+            }
+            datos2.push(datos[i])
+        }
+
+    }
+    return datos2;
+}
+
+
+app.post('/DeleteFichero', (req, res) => {
+    console.log(req.body)
+    var datos = [];
+    datos = require('../backend/Syncronice.json');
+    datos = arbolRecursivoDelFichero(datos, req.body.nombreCarpeta);
+
+    var fs = require('fs');
+    fs.writeFile("Syncronice.json", JSON.stringify(datos), function (err) {
+        if (err) throw err;
+        console.log('complete');
+    }
+
+    );
+    res.json({
+        user: 'Correct'
+    });
+});
+
+
+function arbolRecursivoAddFicheros(datos, carpeta, tipo) {
+
+    for (var i = 0; i < datos.length; i++) {
+        if (datos[i].nombre == carpeta) {
+            if(datos[i].tipo == 0){
+                var datoss;
+                if(tipo = 0){
+                    datoss = {nombre:carpeta, propietario:datos[i].propietario, tipo: tipo, grupo:datos[i].grupo, contenido:[]}
+                }else{
+                    datoss = {nombre:carpeta, propietario:datos[i].propietario, tipo: tipo, grupo:datos[i].grupo, texto:""}
+                }
+                datos[i].contenido.push(datoss)
+            }
+        } else {
+            if (datos[i].tipo == 0) {
+                datos[i].contenido = arbolRecursivoAddFicheros(datos[i].contenido, tipo)
+            }
+        }
+
+    }
+    return datos;
+}
+
+
+app.post('/AddFichero', (req, res) => {
+    console.log(req.body)
+    var datos = [];
+    datos = require('../backend/Syncronice.json');
+    datos = arbolRecursivoAddFicheros(datos, req.body.nombreCarpeta, req.body.nivel);
+
+    var fs = require('fs');
+    fs.writeFile("Syncronice.json", JSON.stringify(datos), function (err) {
+        if (err) throw err;
+        console.log('complete');
+    }
+
+    );
+    res.json({
+        user: 'Correct'
+    });
 });
 
 

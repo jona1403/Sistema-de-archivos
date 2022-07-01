@@ -26,6 +26,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { NotFoundComponent } from './componentes/not-found/not-found.component';
 import { InicioUsuarioComponent } from './componentes/inicio-usuario/inicio-usuario.component';
 import {MatTreeModule} from '@angular/material/tree';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import {MatTreeModule} from '@angular/material/tree';
     NotFoundComponent,
     InicioUsuarioComponent
   ],
+  entryComponents:[]
+  ,
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -57,7 +61,9 @@ import {MatTreeModule} from '@angular/material/tree';
     MatToolbarModule,
     MatTableModule,
     MatTooltipModule,
-    MatTreeModule
+    MatTreeModule,
+    MatDialogModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

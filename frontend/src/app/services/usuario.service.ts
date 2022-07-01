@@ -106,13 +106,22 @@ export class UsuarioService {
     return this.http.post<any>(baseURL + 'HabilitarUsuario', usuario, httpOptions)
   }
 
-  postAddProperty(carpeta: CarpetaPropietario):Observable<any>{
+  postAddProperty(carpeta: CarpetaPropietario): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }),
     };
     return this.http.post<any>(baseURL + 'ChangeProperty', carpeta, httpOptions)
+  }
+
+  postAddColaborador(carpeta: CarpetaPropietario): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+    return this.http.post<any>(baseURL + 'addColaborador', carpeta, httpOptions)
   }
 
   postSyncronize(usuario: string) {
@@ -132,6 +141,36 @@ export class UsuarioService {
       }),
     };
     return this.http.post<any>(baseURL + 'archivosUsuario', usuario, httpOptions)
+  }
+
+
+
+  postCarpetasColaboracion(usuario: Usuario) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+    return this.http.post<any>(baseURL + 'ArchivosColavoracion', usuario, httpOptions)
+  }
+
+  postDeleteFichero(carpeta: CarpetaPropietario): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+    return this.http.post<any>(baseURL + 'DeleteFichero', carpeta, httpOptions)
+  }
+
+
+  postAddFichero(carpeta: CarpetaPropietario): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+    return this.http.post<any>(baseURL + 'AddFichero', carpeta, httpOptions)
   }
 
 }
