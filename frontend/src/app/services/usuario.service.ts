@@ -172,6 +172,14 @@ export class UsuarioService {
     return this.http.post<any>(baseURL + 'DeleteFichero', carpeta, httpOptions)
   }
 
+  postUppdateCarp(carpeta: CarpetaPropietario): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+    return this.http.post<any>(baseURL + 'UUUpdateCarpet', carpeta, httpOptions)
+  }
 
   postAddFichero(carpeta: CarpetaPropietario): Observable<any> {
     const httpOptions = {
@@ -182,4 +190,13 @@ export class UsuarioService {
     return this.http.post<any>(baseURL + 'AddFichero', carpeta, httpOptions)
   }
 
+
+  postMofifyFile(carpeta: CarpetaPropietario): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+    return this.http.post<any>(baseURL + 'ModifyFile', carpeta, httpOptions)
+  }
 }

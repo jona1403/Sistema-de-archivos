@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Usuariolog } from 'src/app/models/usuariolog';
 import { UsuarioService } from '../../services/usuario.service';
-import { Router, UrlSegment } from '@angular/router';
+import { Router, UrlSegment, UrlSerializer } from '@angular/router';
 import { logedin, usuarioAdmin, usuarioLogueado } from 'src/app/apiURL/baseURL';
 @Component({
   selector: 'app-login',
@@ -28,6 +28,10 @@ export class LoginComponent implements OnInit {
       cntr: this.contrasenia.value as string
     }
 
+if(user.usr == '' || user.cntr == ''){
+  this.router.navigateByUrl('/denied')
+}
+
     if (user.usr == usuarioAdmin.correo && user.cntr == usuarioAdmin.contrasenia) {
       this.correo.setValue('');
       this.contrasenia.setValue('');
@@ -37,7 +41,11 @@ export class LoginComponent implements OnInit {
     }
 
     this.usuarioService.postLogin(user).subscribe((res: any) => {
-
+      if(user.usr == res.correo && user.cntr == res.contrasenia){
+        if(!res.able || !res.alta){
+          this.router.navigateByUrl('/denied')
+        }
+      }
       if (user.usr == res.correo && user.cntr == res.contrasenia && res.able && res.alta) {
         usuarioLogueado.nombre = res.nombre;
         usuarioLogueado.apellido = res.apellido;
@@ -56,7 +64,7 @@ export class LoginComponent implements OnInit {
       }
       if (this.contador == 3) {
         this.deshabilitar();
-
+        this.router.navigateByUrl('/denied')
       }
       this.correo.setValue('');
       this.contrasenia.setValue('');

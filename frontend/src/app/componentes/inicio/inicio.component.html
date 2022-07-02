@@ -38,16 +38,19 @@
         <!-- use a disabled button to provide padding for tree leaf -->
         <div class="col-sm-6">{{node.name}}</div>
         <div class="col-sm-6" style="text-align: right;">
-          <a class="pointer" style="color: Blue;" matTooltip="Modificar Carpeta/Archivo" [routerLink]="['/inicio/EditarCarpetas']">
+          <a class="pointer" style="color: Blue;" matTooltip="Modificar Carpeta/Archivo" (click) = "pdf(node.typee, node.name)">
+            <mat-icon>picture_as_pdf</mat-icon>
+          </a>
+          <a class="pointer" style="color: Blue;" matTooltip="Modificar Carpeta/Archivo" (click) = "Modificar(node.typee, node.name)">
             <mat-icon>update</mat-icon>
           </a>
           <a class="pointer" style="color: red;" matTooltip="Eliminar Carpeta/Archivo" (click)="EliminarCarpeta(node.name)">
             <mat-icon>delete</mat-icon>
           </a>
-          <a class="pointer" style="color: green;" matTooltip="Crear Carpeta" (click)="AgregarCarpeta()">
+          <a class="pointer" style="color: green;" matTooltip="Crear Carpeta" (click)="AgregarCarpeta(node.name)">
             <mat-icon>add_box</mat-icon>
           </a>
-          <a class="pointer" style="color: green;" matTooltip="Crear Archivo" (click)="AgregarArchivo()">
+          <a class="pointer" style="color: green;" matTooltip="Crear Archivo" (click)="AgregarArchivo(node.name)">
             <mat-icon>post_add</mat-icon>
           </a>
         </div>
@@ -63,16 +66,16 @@
           {{node.name}}
         </div>
         <div class="col-sm-6" style="text-align: right;">
-          <a class="pointer" style="color: Blue;" matTooltip="Modificar Carpeta/Archivo">
+          <a class="pointer" style="color: Blue;" matTooltip="Modificar Carpeta/Archivo" (click) = "Modificar(node.typee, node.name)">
             <mat-icon>update</mat-icon>
           </a>
           <a class="pointer" style="color: red;" matTooltip="Eliminar Carpeta/Archivo" (click)="EliminarCarpeta(node.name)">
             <mat-icon>delete</mat-icon>
           </a>
-          <a class="pointer" style="color: green;" matTooltip="Crear Carpeta" (click)="AgregarCarpeta()">
+          <a class="pointer" style="color: green;" matTooltip="Crear Carpeta" (click)="AgregarCarpeta(node.name)">
             <mat-icon>add_box</mat-icon>
           </a>
-          <a class="pointer" style="color: green;" matTooltip="Crear Archivo" (click)="AgregarArchivo()">
+          <a class="pointer" style="color: green;" matTooltip="Crear Archivo" (click)="AgregarArchivo(node.name)">
             <mat-icon>post_add</mat-icon>
           </a>
         </div>
@@ -90,16 +93,16 @@
         <!-- use a disabled button to provide padding for tree leaf -->
         <div class="col-sm-6">{{node.name}}</div>
         <div class="col-sm-6" style="text-align: right;">
-          <a class="pointer" style="color: Blue;" matTooltip="Modificar Carpeta/Archivo">
+          <a class="pointer" style="color: Blue;" matTooltip="Modificar Carpeta/Archivo" (click) = "Modificar(node.typee, node.name)">
             <mat-icon>update</mat-icon>
           </a>
           <a class="pointer" style="color: red;" matTooltip="Eliminar Carpeta/Archivo" (click)="EliminarCarpeta(node.name)">
             <mat-icon>delete</mat-icon>
           </a>
-          <a class="pointer" style="color: green;" matTooltip="Crear Carpeta" (click)="AgregarCarpeta()">
+          <a class="pointer" style="color: green;" matTooltip="Crear Carpeta" (click)="AgregarCarpeta(node.name)">
             <mat-icon>add_box</mat-icon>
           </a>
-          <a class="pointer" style="color: green;" matTooltip="Crear Archivo" (click)="AgregarArchivo()">
+          <a class="pointer" style="color: green;" matTooltip="Crear Archivo" (click)="AgregarArchivo(node.name)">
             <mat-icon>post_add</mat-icon>
           </a>
         </div>
@@ -115,16 +118,16 @@
           {{node.name}}
         </div>
         <div class="col-sm-6" style="text-align: right;">
-          <a class="pointer" style="color: Blue;" matTooltip="Modificar Carpeta/Archivo">
+          <a class="pointer" style="color: Blue;" matTooltip="Modificar Carpeta/Archivo" (click) = "Modificar(node.typee, node.name)">
             <mat-icon>update</mat-icon>
           </a>
           <a class="pointer" style="color: red;" matTooltip="Eliminar Carpeta/Archivo" (click)="EliminarCarpeta(node.name)">
             <mat-icon>delete</mat-icon>
           </a>
-          <a class="pointer" style="color: green;" matTooltip="Crear Carpeta" (click)="AgregarCarpeta()">
+          <a class="pointer" style="color: green;" matTooltip="Crear Carpeta" (click)="AgregarCarpeta(node.name)">
             <mat-icon>add_box</mat-icon>
           </a>
-          <a class="pointer" style="color: green;" matTooltip="Crear Archivo" (click)="AgregarArchivo()">
+          <a class="pointer" style="color: green;" matTooltip="Crear Archivo" (click)="AgregarArchivo(node.name)">
             <mat-icon>post_add</mat-icon>
           </a>
         </div>

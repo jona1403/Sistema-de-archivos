@@ -1,0 +1,12 @@
+<div  style="text-align: center;">
+    <h1>Edicion de Carpetas</h1>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Nombre Archivo</mat-label>
+        <input matInput placeholder="Ej.Archivo 1" [formControl]="Nombre"> 
+    </mat-form-field><br>
+    <mat-form-field class="col-sm-12" appearance="fill">
+        <mat-label>Escribe aqui el documento</mat-label>
+        <textarea [(ngModel)]="data.texto" matInput placeholder="Ej.Lorem Ipsum"></textarea>
+      </mat-form-field><br>
+    <button type="button" class="btn btn-outline-dark">Editar Archivo</button>
+</div>

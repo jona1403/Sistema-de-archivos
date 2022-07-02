@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { usuarioLogueado } from 'src/app/apiURL/baseURL';
+import { usuarioLogueado, carpetavar, archivovar } from 'src/app/apiURL/baseURL';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { CarpetaPropietario } from '../../models/carpeta-propietario';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
 
 
@@ -31,6 +31,7 @@ interface ExampleFlatNode {
   name: string;
   level: number;
   property: string;
+  typee: number;
 }
 
 @Component({
@@ -43,13 +44,14 @@ export class InicioComponent implements OnInit {
   nombreArch = new FormControl('');
 
 
-  
+
   private _transformer = (node: carpeta, level: number) => {
     return {
       expandable: !!node.contenido && node.contenido.length > 0,
       name: node.nombre,
       level: level,
-      property: node.propietario
+      property: node.propietario,
+      typee: node.tipo
     };
   };
 
@@ -127,10 +129,10 @@ export class InicioComponent implements OnInit {
     this.carpetasColaboracion();
   }
 
-  AgregarCarpeta() {
+  AgregarCarpeta(propietario: string) {
     const carpeta: CarpetaPropietario = {
       nombreCarpeta: this.nombreArch.value as string,
-      nuevoPropietario: "",
+      nuevoPropietario: propietario,
       nivel: 0
     }
     this.nombreArch.setValue("")
@@ -145,10 +147,10 @@ export class InicioComponent implements OnInit {
     this.carpetasColaboracion();
   }
 
-  AgregarArchivo() {
+  AgregarArchivo(propietario: string) {
     const carpeta: CarpetaPropietario = {
       nombreCarpeta: this.nombreArch.value as string,
-      nuevoPropietario: "",
+      nuevoPropietario: propietario,
       nivel: 1
     }
     this.nombreArch.setValue("")
@@ -163,8 +165,47 @@ export class InicioComponent implements OnInit {
     this.carpetasColaboracion();
   }
 
-  ModificarCarpeta(Carpeta: string) {
+  Modificar(type: Number, nombre: string) {
+    console.log(type)
+    
+    if (type == 0) {
 
+      this.Carpetas();
+      this.carpetasColaboracion();
+      carpetavar.nombre = nombre;
+      console.log(nombre)
+      this.router.navigateByUrl('/inicio/EditarCarpetas')
+    } else if (type == 1) {
+
+      const carpeta: CarpetaPropietario = {
+        nombreCarpeta: nombre,
+        nuevoPropietario: "",
+        nivel: 1
+      }
+      this.nombreArch.setValue("")
+  
+      console.log(carpeta);
+      this.usuarioService.postMofifyFile(carpeta).subscribe((res: any) => {
+        archivovar.texto = res.texto;
+        console.log("AAAAAAAAAAAAAAAAAA")
+        console.log(archivovar.texto)
+      }, (err) => {
+        console.log(err)
+      })
+      this.Carpetas();
+      this.carpetasColaboracion();
+
+
+      archivovar.nombre = nombre;
+      this.router.navigateByUrl('/inicio/EditarArchivo')
+    }
+
+  }
+
+  pdf(type: Number, name: string) {
+    if (type == 1) {
+      this.router.navigateByUrl('/inicio/SeePDF')
+    }
   }
 
 }

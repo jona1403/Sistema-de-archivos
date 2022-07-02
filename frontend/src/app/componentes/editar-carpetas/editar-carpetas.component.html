@@ -1,1 +1,8 @@
-<p>editar-carpetas works!</p>
+<div  style="text-align: center;">
+    <h1>Edicion de Carpetas</h1>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Nombre Carpeta</mat-label>
+        <input matInput placeholder="Ej.Carpeta 1" [formControl]="Nombre"> 
+    </mat-form-field><br><br>
+    <button type="button" class="btn btn-outline-dark" (click)="editName()">Editar Nombre</button>
+</div>

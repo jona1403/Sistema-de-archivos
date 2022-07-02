@@ -30,6 +30,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
 import { EditarCarpetasComponent } from './componentes/editar-carpetas/editar-carpetas.component';
 import { ActualizarCuentaComponent } from './componentes/actualizar-cuenta/actualizar-cuenta.component';
+import { EditarArchivosComponent } from './componentes/editar-archivos/editar-archivos.component';
+import { SeePDFComponent } from './componentes/see-pdf/see-pdf.component';
+import { DeniedComponent } from './componentes/denied/denied.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import { ActualizarCuentaComponent } from './componentes/actualizar-cuenta/actua
     NotFoundComponent,
     InicioUsuarioComponent,
     EditarCarpetasComponent,
-    ActualizarCuentaComponent
+    ActualizarCuentaComponent,
+    EditarArchivosComponent,
+    SeePDFComponent,
+    DeniedComponent
   ],
   entryComponents:[]
   ,

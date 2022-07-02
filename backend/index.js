@@ -6,6 +6,7 @@ const { google } = require('googleapis');
 //const estructs = require('../backend/structs/');
 let json = require('../backend/usuarios.json');
 const { Console } = require('console');
+const { arch } = require('os');
 let archivosUsuario = []
 let archivosColaboracion = []
 
@@ -182,6 +183,21 @@ app.post('/Login', (req, res) => {
 
 //Post aqui se recupera la contrasenia
 app.post('/RecuperarContrasenia', (req, res) => {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for(var i = 0; i < 8; i++){
+        text += possible.charAt(Math.floor(Math.random()*possible.length));
+    }
+
+    const contenHTML = `
+    <h1>Recuperacion de contraseña</h1>
+    <p>El codigo para recuperacion de cuenta es: </p><br>
+    <h2><b>${text}</b></h2>
+    `;
+
+    Mail(req.body.correo, contenHTML, "Recupeacion de contraseña");
+
+
 
 });
 
@@ -358,6 +374,25 @@ function recursivoPropG(datos, propietario) {
 function arbolRecursivoG(datos, carpeta, propietario) {
     for (var i = 0; i < datos.length; i++) {
         if (datos[i].nombre == carpeta) {
+
+
+            const contenHTML = `
+            <h1>Colaborador de Carpeta</h1>
+            <p>Ahora es colaborador de la carpeta <b>${datos[i].nombre}</b></p>
+            `;
+            var correo;
+            var usuarios = require('../backend/usuarios.json');
+            for(var q = 0; q < usuarios.length; q++){
+                if(propietario == usuarios[q].usuario){
+                    correo = usuarios[q].correo;
+                    break;
+                }
+            }
+
+            Mail(correo, contenHTML, "Colaborador de carpeta");
+
+
+
             datos[i].grupo.push(propietario);
             if (datos[i].tipo == 0) {
                 datos[i].contenido = recursivoPropG(datos[i].contenido, propietario)
@@ -403,15 +438,15 @@ app.post('/Dishable', (req, res) => {
 
     Mail(req.body.usr, contenHTML, "Inhabilitación de cuenta");
 
-    contenHTML = `
+    const contenHTML2 = `
     <h1>Datos del Usuario</h1>
     <ul>
-        <li>Nombre: ${req.usr}</li>
+        <li>Nombre: ${req.body.usr}</li>
     </ul>
     <p>El usuario ha sido inhabilitado por ingresar una contraseña incorrecta por 3 veces</p>
     `;
 
-    Mail('jonathanadm715@gmail.com', contenHTML, "Cuenta Inhabilitada");
+    Mail('jonathanadm715@gmail.com', contenHTML2, "Cuenta Inhabilitada");
 
     var fs = require('fs');
     fs.writeFile("usuarios.json", JSON.stringify(json), function (err) {
@@ -525,13 +560,67 @@ app.post('/DeleteFichero', (req, res) => {
 });
 
 
-function arbolRecursivoAddFicheros(datos, carpeta, tipo) {
 
+function arbolRecursivoUpdateCarpet(datos, carpeta, nuevo) {
     for (var i = 0; i < datos.length; i++) {
         if (datos[i].nombre == carpeta) {
+            
+            const contenHTML = `
+            <h1>Edicion Carpeta</h1>
+            <p>Se ha cambiado el nombre de la carpeta <b>${datos[i].nombre}</b> a <b>${nuevo}</b>. </p>
+            `;
+            datos[i].nombre = nuevo;
+            var correo;
+            var usuarios = require('../backend/usuarios.json');
+            for(var q = 0; q < usuarios.length; q++){
+                if(datos[i].propietario == usuarios[q].usuario){
+                    correo = usuarios[q].correo;
+                    break;
+                }
+            }
+
+            Mail(correo, contenHTML, "Edicion Carpetas");
+
+            return datos;
+        } else {
+            if (datos[i].tipo == 0) {
+                datos[i].contenido = arbolRecursivoUpdateCarpet(datos[i].contenido, carpeta, nuevo)
+            }
+        }
+
+    }
+    return datos;
+}
+
+
+app.post('/UUUpdateCarpet', (req, res) => {
+    console.log(req.body)
+    var datos = [];
+    datos = require('../backend/Syncronice.json');
+    datos = arbolRecursivoUpdateCarpet(datos, req.body.nombreCarpeta, req.body.nuevoPropietario);
+
+    var fs = require('fs');
+    fs.writeFile("Syncronice.json", JSON.stringify(datos), function (err) {
+        if (err) throw err;
+        console.log('complete');
+    }
+
+    );
+    res.json({
+        user: 'Correct'
+    });
+});
+
+
+
+
+function arbolRecursivoAddFicheros(datos, carpeta, tipo, nombre) {
+
+    for (var i = 0; i < datos.length; i++) {
+        if (datos[i].nombre == nombre) {
             if (datos[i].tipo == 0) {
                 var datoss;
-                if (tipo = 0) {
+                if (tipo == 0) {
                     datoss = { nombre: carpeta, propietario: datos[i].propietario, tipo: tipo, grupo: datos[i].grupo, contenido: [] }
                 } else {
                     datoss = { nombre: carpeta, propietario: datos[i].propietario, tipo: tipo, grupo: datos[i].grupo, texto: "" }
@@ -540,7 +629,7 @@ function arbolRecursivoAddFicheros(datos, carpeta, tipo) {
             }
         } else {
             if (datos[i].tipo == 0) {
-                datos[i].contenido = arbolRecursivoAddFicheros(datos[i].contenido, tipo)
+                datos[i].contenido = arbolRecursivoAddFicheros(datos[i].contenido, carpeta, tipo, nombre)
             }
         }
 
@@ -553,7 +642,7 @@ app.post('/AddFichero', (req, res) => {
     console.log(req.body)
     var datos = [];
     datos = require('../backend/Syncronice.json');
-    datos = arbolRecursivoAddFicheros(datos, req.body.nombreCarpeta, req.body.nivel);
+    datos = arbolRecursivoAddFicheros(datos, req.body.nombreCarpeta, req.body.nivel, req.body.nuevoPropietario);
 
     var fs = require('fs');
     fs.writeFile("Syncronice.json", JSON.stringify(datos), function (err) {
@@ -565,6 +654,32 @@ app.post('/AddFichero', (req, res) => {
     res.json({
         user: 'Correct'
     });
+});
+
+function retArchivo(datos, nombre){
+
+    for (var i = 0; i < datos.length; i++) {
+        if (datos[i].nombre == nombre) {
+            return datos[i];
+        } else {
+            if (datos[i].tipo == 0) {
+                return retArchivo( datos[i].contenido, nombre)
+            }
+        }
+
+    }
+    return null;
+}
+
+//Retorna el archivo a editar
+app.post('/ModifyFile', (req, res) => {
+    console.log(req.body)
+    var datos = [];
+    var archivo;
+    datos = require('../backend/Syncronice.json');
+    archivo = retArchivo( datos, req.body.nombreCarpeta);
+    console.log(archivo)
+    res.send(archivo)
 });
 
 

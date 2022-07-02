@@ -12,6 +12,9 @@ import { NotFoundComponent } from './componentes/not-found/not-found.component';
 import { InicioUsuarioComponent } from './componentes/inicio-usuario/inicio-usuario.component';
 import { EditarCarpetasComponent } from './componentes/editar-carpetas/editar-carpetas.component';
 import { ActualizarCuentaComponent } from './componentes/actualizar-cuenta/actualizar-cuenta.component';
+import { EditarArchivosComponent } from './componentes/editar-archivos/editar-archivos.component';
+import { SeePDFComponent } from './componentes/see-pdf/see-pdf.component';
+import { DeniedComponent } from './componentes/denied/denied.component';
 
 const routes: Routes = [
   {
@@ -38,6 +41,14 @@ const routes: Routes = [
         path: 'ActualizarCuenta',
         component: ActualizarCuentaComponent,
       },
+      {
+        path: 'EditarArchivo',
+        component: EditarArchivosComponent,
+      },
+      {
+        path: 'SeePDF',
+        component: SeePDFComponent,
+      },
     ]
   },
   {
@@ -59,6 +70,10 @@ const routes: Routes = [
   {
     path: 'AdministrarCarpetasArchivos',
     component: AdminCarpetasArchivosComponent,
+  },
+  {
+    path: 'denied',
+    component: DeniedComponent,
   },
   {
     path: '**',
